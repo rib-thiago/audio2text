@@ -1,5 +1,6 @@
-from fastapi import FastAPI, UploadFile, File
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, UploadFile, File, Request
+from fastapi.responses import JSONResponse, HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from pathlib import Path
 from audio2text.processing import convert_to_wav, segment_audio, transcribe_and_save
 import shutil
@@ -8,6 +9,8 @@ import os
 app = FastAPI()
 
 TEMP_DIR = 'temp'
+
+app.mount("/static", StaticFiles(directory="audio2text/static"), name="static")
 
 @app.post("/upload/")
 async def upload_audio(file: UploadFile = File(...)):
@@ -50,12 +53,17 @@ async def get_transcription():
     else:
         return JSONResponse(status_code=404, content={"message": "Transcrição não encontrada"})
 
-@app.post("/save/")
-async def save_edits(transcription: str):
+@app.post("/transcription/")
+async def save_transcription(transcription: dict):
     transcription_path = Path(TEMP_DIR) / "transcription.txt"
     if transcription_path.exists():
         with open(transcription_path, 'w') as file:
-            file.write(transcription)
+            file.write(transcription["transcription"])
         return {"message": "Transcrição salva com sucesso"}
     else:
         return JSONResponse(status_code=404, content={"message": "Transcrição não encontrada"})
+
+@app.get("/", response_class=HTMLResponse)
+async def get_index(request: Request):
+    with open("templates/index.html") as f:
+        return HTMLResponse(content=f.read())

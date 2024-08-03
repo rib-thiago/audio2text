@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Transcription</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <nav>
+        <h1>Audio Transcription</h1>
+    </nav>
+    <main>
+        <div class="audio-player">
+            <audio controls id="audioPlayer">
+                <source src="/static/dvcs.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div class="transcription-editor">
+            <textarea id="transcriptionText" rows="20" cols="100"></textarea>
+        </div>
+        <button id="saveButton">Save</button>
+    </main>
+    <script src="/static/script.js"></script>
+</body>
+</html>
