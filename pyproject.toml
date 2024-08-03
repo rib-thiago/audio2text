@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "audio2text"
+version = "0.1.0"
+description = ""
+authors = ["Thiago Ribeiro <mackandalls@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.10.14"
+fastapi = "^0.112.0"
+uvicorn = "^0.30.5"
+ffmpeg-python = "^0.2.0"
+speechrecognition = "^3.10.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
