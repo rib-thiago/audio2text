@@ -53,12 +53,12 @@ async def get_transcription():
     else:
         return JSONResponse(status_code=404, content={"message": "Transcrição não encontrada"})
 
-@app.post("/transcription/")
+@app.post("/save/")
 async def save_transcription(transcription: dict):
     transcription_path = Path(TEMP_DIR) / "transcription.txt"
     if transcription_path.exists():
         with open(transcription_path, 'w') as file:
-            file.write(transcription["transcription"])
+            file.write(transcription.get("transcription", ""))
         return {"message": "Transcrição salva com sucesso"}
     else:
         return JSONResponse(status_code=404, content={"message": "Transcrição não encontrada"})
