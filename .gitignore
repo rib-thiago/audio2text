@@ -5,7 +5,7 @@
 *.wav
 *.txt
 temp/
-
+workdir/
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
