@@ -1,27 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Transcription</title>
+    <title>Upload de Áudio</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <nav>
-        <h1>Audio Transcription</h1>
-    </nav>
+    <header>
+        <h1>Upload de Áudio</h1>
+    </header>
     <main>
-        <div class="audio-player">
-            <audio controls id="audioPlayer">
-                <source src="/static/dvcs.wav" type="audio/wav">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <div class="transcription-editor">
-            <textarea id="transcriptionText" rows="20" cols="100"></textarea>
-        </div>
-        <button id="saveButton">Save</button>
+        <form action="/upload/" method="post" enctype="multipart/form-data">
+            <label for="file">Escolha um arquivo de áudio:</label>
+            <input type="file" id="file" name="file" accept="audio/*" required>
+            <button type="submit">Enviar</button>
+        </form>
     </main>
-    <script src="/static/script.js"></script>
 </body>
 </html>

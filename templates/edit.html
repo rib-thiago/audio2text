@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de Transcrição</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Edição de Transcrição</h1>
+    </header>
+    <main>
+        <section>
+            <h2>Áudio do Segmento</h2>
+            <audio controls>
+                <source src="{{ audio_file }}" type="audio/wav">
+                Seu navegador não suporta o elemento de áudio.
+            </audio>
+        </section>
+        <section>
+            <h2>Transcrição</h2>
+            <textarea id="transcription" rows="10" cols="50">{{ transcription }}</textarea>
+        </section>
+        <section>
+            <input type="hidden" id="segment-id" value="{{ segment_id }}">
+            <button id="save-button">Salvar Transcrição</button>
+        </section>
+    </main>
+    <script src="/static/script.js"></script>
+</body>
+</html>
